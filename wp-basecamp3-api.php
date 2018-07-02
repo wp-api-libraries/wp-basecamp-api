@@ -176,6 +176,52 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 			return $this->build_request( $route, $args, $method )->fetch();
 		}
 
+		/* ATTACHMENTS. */
+
+		/* CAMPFIRES. */
+
+		/* CHATBOTS. */
+
+		/* CLIENT APPROVALS. */
+
+		/* CLIENT CORRESPONDENCES. */
+
+		/* CLIENT REPLIES. */
+
+		/* COMMENTS. */
+
+		/* DOCUMENTS. */
+
+		/* EVENTS. */
+
+		/* FORWARDS. */
+
+		/* INBOXES. */
+
+		/* MESSAGE BOARDS. */
+
+		/* MESSAGE TYPES. */
+
+
+		/* MESSAGES. */
+
+		public function get_messages( $project_id, $board_id ) {
+			return $this->run( '/buckets/'.$project_id.'message_boards/'.$board_id.'/messages.json' );
+		}
+
+		public function get_message( $project_id, $message_id ) {
+			return $this->run( '/buckets/'.$project_id.'messages/'.$message_id.'.json' );
+		}
+
+		public function create_message( $project_id, $board_id ) {
+			$args = array();
+			return $this->run( '/buckets/'.$project_id.'message_boards/'.$board_id.'/messages.json', $args, 'POST' );
+		}
+
+		public function update_message() {
+
+		}
+
 		/* PEOPLE. */
 
 		/**
@@ -210,7 +256,6 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 			return $this->run( 'my/profile.json' );
 		}
 
-
 		/* PROJECTS. */
 
 		public function get_projects() {
@@ -222,7 +267,7 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 		}
 
 		public function create_project( $name, $description, $args = array() ) {
-			return $this->run( 'projects.json', '', 'POST' );
+			return $this->run( 'projects.json', $args, 'POST' );
 		}
 
 		public function update_project() {
@@ -233,25 +278,35 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 
 		}
 
+		/* QUESTIONS & ANSWERS. */
 
-		/* MESSAGES. */
+		/* QUESTIONAIRES. */
 
-		public function get_messages( $project_id, $board_id ) {
-			return $this->run( 'buckets/'.$project_id.'/message_boards/'.$board_id.'/messages.json' );
-		}
+		/* QUESTIONS. */
 
-		public function get_message( $project_id, $message_id ) {
-			return $this->run( 'buckets/'.$project_id.'/messages/'.$message_id.'.json' );
-		}
+		/* RECORDINGS. */
 
-		public function create_message( $project_id, $board_id ) {
-			$args = array();
-			return $this->run( 'buckets/'.$project_id.'/message_boards/'.$board_id.'/messages.json', $args, 'POST' );
-		}
+		/* SCHEDULE ENTRIES. */
 
-		public function update_message() {
+		/* SCHEDULES. */
 
-		}
+		/* SUBSCRIPTIONS. */
+
+		/* TEMPLATES. */
+
+		/* TODOS LISTS GROUPS. */
+
+		/* TODOS LISTS. */
+
+		/* TODOS. */
+
+		/* TODO SETS. */
+
+		/* UPLOADS. */
+
+		/* VAULTS. */
+
+		/* WEBHOOKS. */
 
 	}
 }
