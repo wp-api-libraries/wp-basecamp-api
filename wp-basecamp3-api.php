@@ -280,33 +280,261 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 
 		/* QUESTIONS & ANSWERS. */
 
+		public function get_question_answers() {
+
+		}
+
+		public function get_question_answer() {
+
+		}
+
 		/* QUESTIONAIRES. */
+
+		public function get_questionaire() {
+
+		}
 
 		/* QUESTIONS. */
 
+		public function get_questions() {
+
+		}
+
+		public function get_question() {
+
+		}
+
 		/* RECORDINGS. */
+
+		public function get_recordings() {
+
+		}
+
+		public function trash_recording() {
+
+		}
+
+		public function archive_recording() {
+
+		}
+
+		public function unarchive_recording() {
+
+		}
 
 		/* SCHEDULE ENTRIES. */
 
+		public function get_schedule_entries() {
+
+		}
+
+		public function get_schedule_entry() {
+
+		}
+
+		public function create_schedule_entry() {
+
+		}
+
+		public function update_schedule_entry() {
+
+		}
+
+		public function trash_schedule_entry() {
+
+		}
+
 		/* SCHEDULES. */
+
+		public function get_schedule() {
+
+		}
 
 		/* SUBSCRIPTIONS. */
 
+		public function get_subscription() {
+
+		}
+
+		public function subscribe_current_user() {
+
+		}
+
+		public function unsubscribe_current_user() {
+
+		}
+
+		public function update_subscription() {
+
+		}
+
 		/* TEMPLATES. */
+
+		public function get_templates() {
+
+		}
+
+		public function get_template() {
+
+		}
+
+		public function create_template() {
+
+		}
+
+		public function update_template() {
+
+		}
+
+		public function update_template() {
+
+		}
+
+		public function trash_template() {
+
+		}
+
+		public function create_project_construction() {
+
+		}
+
+		public function get_project_construction() {
+
+		}
 
 		/* TODOS LISTS GROUPS. */
 
+		public function get_todo_list_groups() {
+
+		}
+
+		public function get_todo_list_group() {
+
+		}
+
+		public function create_todo_list_group() {
+
+		}
+
+		public function reposition_todo_list_group() {
+
+		}
+
 		/* TODOS LISTS. */
+
+		public function get_todo_lists() {
+
+		}
+
+		public function get_todo_list() {
+
+		}
+
+		public function create_todo_list() {
+
+		}
+
+		public function update_todo_list() {
+
+		}
+
+		public function trash_todo_list() {
+
+		}
 
 		/* TODOS. */
 
+		public function get_todos() {
+
+		}
+
+		public function get_todo() {
+
+		}
+
+		public function create_todo() {
+
+		}
+
+		public function update_todo() {
+
+		}
+
+		public function complete_todo() {
+
+		}
+
+		public function uncomplete_todo() {
+
+		}
+
+		public function reposition_todo() {
+
+		}
+
+		public function trash_todo() {
+
+		}
+
 		/* TODO SETS. */
+
+		public function get_todo_set( $project_id, $todo_set_id ) {
+			return $this->run( 'buckets/'. $project_id .'/todosets/'. $todo_set_id .'.json' );
+		}
 
 		/* UPLOADS. */
 
+		public function get_uploads( $project_id, $vault_id ) {
+			return $this->run( 'buckets/'. $project_id .'/vaults/'. $vault_id .'/uploads.json' );
+		}
+
+		public function get_upload( $project_id, $upload_id ) {
+			return $this->run( 'buckets/'. $project_id .'/uploads/'. $upload_id .'.json' );
+		}
+
+		public function create_upload() {
+
+		}
+
+		public function update_upload() {
+
+		}
+
 		/* VAULTS. */
 
+		public function get_vaults() {
+
+		}
+
+		public function get_vault() {
+
+		}
+
+		public function create_vault() {
+
+		}
+
+		public function update_vault() {
+
+		}
+
 		/* WEBHOOKS. */
+
+		public function get_webhooks() {
+
+		}
+
+		public function get_webhook() {
+
+		}
+
+		public function create_webhook() {
+
+		}
+
+		public function update_webhook() {
+
+		}
 
 	}
 }
