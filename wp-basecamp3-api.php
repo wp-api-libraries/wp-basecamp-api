@@ -237,16 +237,16 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 		/* MESSAGES. */
 
 		public function get_messages( $project_id, $board_id ) {
-			return $this->run( '/buckets/'.$project_id.'/message_boards/'.$board_id.'/messages.json' );
+			return $this->run( 'buckets/'.$project_id.'/message_boards/'.$board_id.'/messages.json' );
 		}
 
 		public function get_message( $project_id, $message_id ) {
-			return $this->run( '/buckets/'.$project_id.'/messages/'.$message_id.'.json' );
+			return $this->run( 'buckets/'.$project_id.'/messages/'.$message_id.'.json' );
 		}
 
 		public function create_message( $project_id, $board_id ) {
 			$args = array();
-			return $this->run( '/buckets/'.$project_id.'/message_boards/'.$board_id.'/messages.json', $args, 'POST' );
+			return $this->run( 'buckets/'.$project_id.'/message_boards/'.$board_id.'/messages.json', $args, 'POST' );
 		}
 
 		public function update_message() {
