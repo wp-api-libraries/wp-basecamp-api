@@ -2,7 +2,7 @@
 /**
  * Library for accessing the Basecamp 3 API on WordPress
  *
- * @link https://api.cloudflare.com/ API Documentation
+ * @link https://github.com/basecamp/bc3-api API Documentation
  * @package WP-API-Libraries\WP-Basecamp-API
  */
 
@@ -13,7 +13,7 @@
  * Author: WP API Libraries
  * Version: 1.0.0
  * Author URI: https://wp-api-libraries.com
- * GitHub Plugin URI: https://github.com/imforza
+ * GitHub Plugin URI: https://github.com/basecamp/bc3-api
  * GitHub Branch: master
  */
 
@@ -23,11 +23,11 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 if ( ! class_exists( 'Basecamp3API' ) ) {
 
 	/**
-	 * A WordPress API library for accessing the Cloudflare API.
+	 * A WordPress API library for accessing the Basecamp3 API.
 	 *
 	 * @version 1.1.0
-	 * @link https://api.cloudflare.com/ API Documentation
-	 * @package WP-API-Libraries\WP-IDX-Cloudflare-API
+	 * @link https://github.com/basecamp/bc3-api API Documentation
+	 * @package WP-API-Libraries\WP-Basecamp3-API
 	 * @author Santiago Garza <https://github.com/sfgarza>
 	 * @author imFORZA <https://github.com/imforza>
 	 */
@@ -176,18 +176,81 @@ if ( ! class_exists( 'Basecamp3API' ) ) {
 			return $this->build_request( $route, $args, $method )->fetch();
 		}
 
+		/* PEOPLE. */
+
 		/**
-		 * Get User Properties
-		 *
-		 * Account Access: FREE, PRO, Business, Enterprise
+		 * Get All People.
 		 *
 		 * @api GET
-		 * @see https://api.cloudflare.com/#user-user-details Documentation.
+		 * @see https://github.com/basecamp/bc3-api/blob/master/sections/people.md#get-all-people
 		 * @access public
 		 * @return array  User information.
 		 */
-		public function get_user() {
-			return $this->run( 'user' );
+		public function get_all_people() {
+			return $this->run( 'people.json' );
+		}
+
+		public function get_people_on_projects( $project_id ) {
+			return $this->run( 'projects/'.$project_id.'/people.json' );
+		}
+
+		public function update_project_access( $project_id) {
+			return $this->run( 'projects/'.$project_id.'/people/users.json', '', 'PUT' );
+		}
+
+		public function get_pingable_people() {
+			return $this->run( 'circles/people.json' );
+		}
+
+		public function get_person( $user_id ) {
+			return $this->run( 'people/'.$user_id.'.json' );
+		}
+
+		public function get_my_profile() {
+			return $this->run( 'my/profile.json' );
+		}
+
+
+		/* PROJECTS. */
+
+		public function get_projects() {
+			return $this->run( 'projects.json' );
+		}
+
+		public function get_project( $project_id ) {
+			return $this->run( 'projects/'.$project_id.'.json' );
+		}
+
+		public function create_project( $name, $description, $args = array() ) {
+			return $this->run( 'projects.json', '', 'POST' );
+		}
+
+		public function update_project() {
+
+		}
+
+		public function trash_project() {
+
+		}
+
+
+		/* MESSAGES. */
+
+		public function get_messages( $project_id, $board_id ) {
+			return $this->run( '/buckets/'.$project_id.'/message_boards/'.$board_id.'/messages.json' );
+		}
+
+		public function get_message( $project_id, $message_id ) {
+			return $this->run( '/buckets/'.$project_id.'/messages/'.$message_id.'.json' );
+		}
+
+		public function create_message( $project_id, $board_id ) {
+			$args = array();
+			return $this->run( '/buckets/'.$project_id.'/message_boards/'.$board_id.'/messages.json', $args, 'POST' );
+		}
+
+		public function update_message() {
+
 		}
 
 	}
