@@ -91,12 +91,10 @@ if ( ! class_exists( 'BasecampAPI' ) ) {
 		}
 
 		/**
-		 * Clear query data.
+		 * Returns a list of currently authenticated users.
+		 *
+		 * @return object The response.
 		 */
-		protected function clear() {
-			$this->args = array();
-		}
-
 		public function check_authentication(){
 			$this->build_request( 'authorization.json' );
 
