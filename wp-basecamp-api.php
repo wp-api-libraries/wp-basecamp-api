@@ -106,10 +106,39 @@ if ( ! class_exists( 'BasecampAPI' ) ) {
 		}
 
 
-		/* PROJECTS. */
+		/* PEOPLE. */
 
+		/**
+		 * get_people function.
+		 *
+		 * @access public
+		 * @return void
+		 */
 		public function get_people() {
 			return $this->run( 'people' );
+		}
+
+		/* PROJECTS. */
+
+		/**
+		 * get_all_projects function.
+		 *
+		 * @access public
+		 * @return void
+		 */
+		public function get_all_projects() {
+			return $this->run( 'projects' );
+		}
+
+		/**
+		 * get_project function.
+		 *
+		 * @access public
+		 * @param mixed $project_id
+		 * @return void
+		 */
+		public function get_project( $project_id ) {
+			return $this->run( 'projects/' . $project_id );
 		}
 
 		/* BASECAMPS. */
@@ -117,6 +146,44 @@ if ( ! class_exists( 'BasecampAPI' ) ) {
 		/* CAMPFIRES. */
 
 		/* CHATBOTS. */
+
+		/* UPLOADS. */
+
+		public function get_uploads( $project_id, $vault_id ) {
+			return $this->run( '/buckets/'.$project_id.'/vaults/'.$vault_id.'/uploads' );
+		}
+
+		/* VAULTS. */
+
+		/**
+		 * get_vaults function.
+		 *
+		 * @access public
+		 * @return void
+		 */
+		public function get_vaults() {
+			return $this->run( 'vaults' );
+		}
+
+		/**
+		 * get_vault function.
+		 *
+		 * @access public
+		 * @param mixed $vault_id
+		 * @param mixed $project_id
+		 * @return void
+		 */
+		public function get_vault( $vault_id, $project_id ) {
+			return $this->run( '/buckets/'. $project_id .'/vaults/' . $vault_id );
+		}
+
+		public function create_vault() {
+
+		}
+
+		public function update_vault() {
+
+		}
 
 	}
 
