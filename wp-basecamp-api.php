@@ -105,6 +105,73 @@ if ( ! class_exists( 'BasecampAPI' ) ) {
 			return $response;
 		}
 
+		/* ATTACHMENTS. */
+
+		/* CAMPFIRES. */
+
+		/* CHATBOTS. */
+
+		/* CLIENT APPROVALS. */
+
+		/* CLIENT CORRESPONDENCES. */
+
+		/* CLIENT REPLIES. */
+
+		/* COMMENTS. */
+
+		/* DOCUMENTS. */
+
+		/* EVENTS. */
+
+		/* FORWARDS. */
+
+		/* INBOXES. */
+
+		/* MESSAGE BOARDS. */
+
+		/**
+		 * get_message_board function.
+		 *
+		 * @access public
+		 * @param mixed $project_id
+		 * @param mixed $message_board_id
+		 * @return void
+		 */
+		public function get_message_board( $project_id, $message_board_id ) {
+			return $this->run( 'buckets/'.$project_id.'/message_boards/' . $message_board_id );
+		}
+
+		/* MESSAGE TYPES. */
+
+		/* MESSAGES. */
+
+		/**
+		 * get_messages function.
+		 *
+		 * @access public
+		 * @param mixed $project_id
+		 * @param mixed $message_board
+		 * @return void
+		 */
+		public function get_messages( $project_id, $message_board ) {
+			return $this->run( 'buckets/'.$project_id.'/message_boards/'.$message_board.'/messages' );
+		}
+
+		/**
+		 * get_message function.
+		 *
+		 * @access public
+		 * @param mixed $message_id
+		 * @param mixed $project_id
+		 * @return void
+		 */
+		public function get_message( $message_id, $project_id ) {
+			return $this->run( 'buckets/'.$project_id.'/messages/' . $message_id );
+		}
+
+		public function create_message() {
+
+		}
 
 		/* PEOPLE. */
 
@@ -141,11 +208,29 @@ if ( ! class_exists( 'BasecampAPI' ) ) {
 			return $this->run( 'projects/' . $project_id );
 		}
 
-		/* BASECAMPS. */
+		/* QUESTION ANSWERS. */
 
-		/* CAMPFIRES. */
+		/* QUESTIONNAIRES. */
 
-		/* CHATBOTS. */
+		/* QUESTIONS. */
+
+		/* RECORDINGS. */
+
+		/* SCHEDULE ENTRIES. */
+
+		/* SCHEDULES. */
+
+		/* SUBSCRIPTIONS. */
+
+		/* TEMPLATES. */
+
+		/* TODO LIST GROUPS. */
+
+		/* TODO LISTS. */
+
+		/* TODO SETS. */
+
+		/* TODOS. */
 
 		/* UPLOADS. */
 
@@ -184,6 +269,8 @@ if ( ! class_exists( 'BasecampAPI' ) ) {
 		public function update_vault() {
 
 		}
+
+		/* WEBHOOKS. */
 
 	}
 
