@@ -95,7 +95,7 @@ if ( ! class_exists( 'BasecampAPIBase' ) ) {
 		 */
 		protected function fetch() {
 			// Make the request.
-			pp( $this->base_uri . $this->route, $this->args );
+			// pp( $this->base_uri . $this->route, $this->args );
 			$response = wp_remote_request( $this->base_uri . $this->route, $this->args );
 			// Retrieve status code and body.
 			$code = wp_remote_retrieve_response_code( $response );

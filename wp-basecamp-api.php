@@ -96,11 +96,9 @@ if ( ! class_exists( 'BasecampAPI' ) ) {
 		 * @return object The response.
 		 */
 		public function check_authentication(){
-			$this->build_request( 'authorization.json' );
-
 			$this->base_uri = 'https://launchpad.37signals.com/';
 
-			$response = $this->fetch();
+			$response = $this->run( 'authorization' );
 
 			$this->base_uri = 'https://3.basecampapi.com/';
 
