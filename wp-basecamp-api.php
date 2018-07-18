@@ -19,24 +19,29 @@
 /* Exit if accessed directly. */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+include_once( 'wp-api-libraries-base.php' );
+
 /* Check if class exists. */
 if ( ! class_exists( 'BasecampAPI' ) ) {
 
-	class BasecampAPI {
+	/**
+	 * BasecampAPI class.
+	 */
+	class BasecampAPI extends BasecampAPIBase {
 
 		/**
 		 * Access Token.
 		 *
 		 * @var string
 		 */
-		static private $access_token;
+		private $access_token;
 
 		/**
 		 * Account ID.
 		 *
 		 * @var string
 		 */
-		static private $account_id;
+		private $account_id;
 
 		/**
 		 * BaseAPI Endpoint
@@ -44,7 +49,7 @@ if ( ! class_exists( 'BasecampAPI' ) ) {
 		 * @var string
 		 * @access protected
 		 */
-		protected $base_uri = 'https://3.basecampapi.com';
+		protected $base_uri = 'https://3.basecampapi.com/';
 
 		/**
 		 * __construct function.
@@ -55,42 +60,60 @@ if ( ! class_exists( 'BasecampAPI' ) ) {
 		 * @return void
 		 */
 		public function __construct( $account_id, $access_token ){
-
+			$this->account_id   = $account_id;
+			$this->base_uri    .= $account_id . '/';
+			$this->access_token = $access_token;
 		}
 
 		/**
-		 * Fetch the request from the API.
+		 * set_headers function.
 		 *
-		 * @access private
-		 * @param mixed $request Request URL.
-		 * @return $body Body.
-		 */
-		private function fetch( $request ) {
-
-			$response = wp_remote_request( $request, $this->args );
-
-			var_dump($response);
-
-			$code = wp_remote_retrieve_response_code($response );
-			if ( 200 !== $code ) {
-				return new WP_Error( 'response-error', sprintf( __( 'Server response code: %d', 'text-domain' ), $code ) );
-			}
-			$body = wp_remote_retrieve_body( $response );
-			return json_decode( $body );
-		}
-
-
-		/* ATTACHMENTS. */
-
-		/**
-		 * add_attachment function.
-		 *
-		 * @access public
-		 * @param mixed $name
+		 * @access protected
 		 * @return void
 		 */
-		public function add_attachment( $name ) {
+		protected function set_headers(){
+			$this->args['headers'] = array(
+				'Authorization' => 'Bearer ' . $this->access_token,
+				'Content-Type' => 'application/json',
+			);
+		}
 
+		/**
+		 * Private wrapper function (for simpler coding), prepares the request then fetches it.
+		 *
+		 * @param  [type] $route  [description]
+		 * @param  array  $body   [description]
+		 * @param  bool   $method The method of the request.
+		 * @return [type]         [description]
+		 */
+		private function run( $route, $body = array(), $method = 'GET' ){
+			return $this->build_request( $route . '.json', $body, $method )->fetch();
+		}
+
+		/**
+		 * Clear query data.
+		 */
+		protected function clear() {
+			$this->args = array();
+		}
+
+		public function check_authentication(){
+			$this->build_request( 'authorization.json' );
+
+			$this->base_uri = 'https://launchpad.37signals.com/';
+
+			$response = $this->fetch();
+
+			$this->base_uri = 'https://3.basecampapi.com/';
+
+			return $response;
+		}
+
+
+		/* PROJECTS. */
+
+		public function get_people() {
+			return $this->run( 'people' );
 		}
 
 		/* BASECAMPS. */
